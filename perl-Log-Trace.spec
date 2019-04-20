@@ -4,11 +4,11 @@
 #
 Name     : perl-Log-Trace
 Version  : 1.070
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-trace-perl/liblog-trace-perl_1.070-3.debian.tar.xz
-Summary  : No detailed summary available
+Summary  : provides a unified approach to tracing
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: perl-Log-Trace-license = %{version}-%{release}
@@ -22,6 +22,7 @@ Log::Trace v1.070
 Summary: dev components for the perl-Log-Trace package.
 Group: Development
 Provides: perl-Log-Trace-devel = %{version}-%{release}
+Requires: perl-Log-Trace = %{version}-%{release}
 
 %description dev
 dev components for the perl-Log-Trace package.
@@ -40,7 +41,7 @@ license components for the perl-Log-Trace package.
 cd ..
 %setup -q -T -D -n Log-Trace-1.070 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Log-Trace-1.070/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Log-Trace-1.070/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
