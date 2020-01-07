@@ -4,14 +4,15 @@
 #
 Name     : perl-Log-Trace
 Version  : 1.070
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-trace-perl/liblog-trace-perl_1.070-3.debian.tar.xz
-Summary  : provides a unified approach to tracing
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: perl-Log-Trace-license = %{version}-%{release}
+Requires: perl-Log-Trace-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -36,18 +37,28 @@ Group: Default
 license components for the perl-Log-Trace package.
 
 
+%package perl
+Summary: perl components for the perl-Log-Trace package.
+Group: Default
+Requires: perl-Log-Trace = %{version}-%{release}
+
+%description perl
+perl components for the perl-Log-Trace package.
+
+
 %prep
 %setup -q -n Log-Trace-1.070
-cd ..
-%setup -q -T -D -n Log-Trace-1.070 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/liblog-trace-perl_1.070-3.debian.tar.xz
+cd %{_builddir}/Log-Trace-1.070
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Log-Trace-1.070/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Log-Trace-1.070/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -57,7 +68,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -66,8 +77,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Log-Trace
-cp COPYING %{buildroot}/usr/share/package-licenses/perl-Log-Trace/COPYING
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Trace/deblicense_copyright
+cp %{_builddir}/Log-Trace-1.070/COPYING %{buildroot}/usr/share/package-licenses/perl-Log-Trace/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
+cp %{_builddir}/Log-Trace-1.070/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Trace/faf387c4cce24590d2f052815d6e278cdbb09ebb
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -80,8 +91,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Log/Trace.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Log/Trace/Manual.pod
 
 %files dev
 %defattr(-,root,root,-)
@@ -90,5 +99,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Log-Trace/COPYING
-/usr/share/package-licenses/perl-Log-Trace/deblicense_copyright
+/usr/share/package-licenses/perl-Log-Trace/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
+/usr/share/package-licenses/perl-Log-Trace/faf387c4cce24590d2f052815d6e278cdbb09ebb
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Log/Trace.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Log/Trace/Manual.pod
