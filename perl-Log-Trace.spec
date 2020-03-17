@@ -4,7 +4,7 @@
 #
 Name     : perl-Log-Trace
 Version  : 1.070
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-trace-perl/liblog-trace-perl_1.070-3.debian.tar.xz
@@ -78,7 +78,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Log-Trace
 cp %{_builddir}/Log-Trace-1.070/COPYING %{buildroot}/usr/share/package-licenses/perl-Log-Trace/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
-cp %{_builddir}/Log-Trace-1.070/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Trace/faf387c4cce24590d2f052815d6e278cdbb09ebb
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Trace/faf387c4cce24590d2f052815d6e278cdbb09ebb
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -104,5 +104,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Log/Trace.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Log/Trace/Manual.pod
+/usr/lib/perl5/vendor_perl/5.30.2/Log/Trace.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Log/Trace/Manual.pod
