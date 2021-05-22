@@ -4,7 +4,7 @@
 #
 Name     : perl-Log-Trace
 Version  : 1.070
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-trace-perl/liblog-trace-perl_1.070-3.debian.tar.xz
