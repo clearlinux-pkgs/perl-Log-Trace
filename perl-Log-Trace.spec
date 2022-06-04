@@ -4,7 +4,7 @@
 #
 Name     : perl-Log-Trace
 Version  : 1.070
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BB/BBC/Log-Trace-1.070.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-trace-perl/liblog-trace-perl_1.070-3.debian.tar.xz
@@ -104,5 +104,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/Log/Trace.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Log/Trace/Manual.pod
+/usr/lib/perl5/*
